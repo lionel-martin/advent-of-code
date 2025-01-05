@@ -1,4 +1,5 @@
 import itertools
+from collections import defaultdict
 
 def read_file(dir, file):
     return open(dir + file,'r').read().splitlines()
@@ -26,4 +27,15 @@ def add(x,y):
     return map(sum, zip(x,y))
 
 def mult(x, v):
-	return [i*v for i in x]
+    return [i*v for i in x]
+
+def create_grid(puzzle_input, sep=""):
+    grid = defaultdict(lambda: defaultdict(str))
+    
+    for r_idx, row in enumerate(puzzle_input.splitlines()):
+        elems = row.split(sep) if sep else list(row)
+        for c_idx, elem in enumerate(elems):
+            grid[r_idx][c_idx] = elem
+            
+    return grid      
+        
